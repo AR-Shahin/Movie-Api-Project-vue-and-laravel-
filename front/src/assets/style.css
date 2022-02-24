@@ -1,0 +1,13 @@
+body {
+  font-family: "DM Sans", sans-serif;
+  font-family: "Island Moments", cursive;
+  font-family: "Poppins", sans-serif;
+  font-family: "Roboto", sans-serif;
+}
+
+.custom_bg {
+  background: #2b004d;
+}
+.body_bg {
+  background: #480080;
+}

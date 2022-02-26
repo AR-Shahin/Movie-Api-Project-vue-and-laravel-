@@ -7,7 +7,7 @@
             <div class="col-md-3" v-for="movie in data.movies" :key="movie.id">
                 <div class="card">
                     <div class="card-body">
-                        <router-link  :to="`/single/${movie.slug}`">
+                        <router-link  :to="`/single/${movie.id}`">
                         <h4>{{movie.name}}</h4>
                         <p>{{movie.description}}</p>
                         <img :src="`http://127.0.0.1:8000/${movie.image}`" alt="" class="img-fluid">

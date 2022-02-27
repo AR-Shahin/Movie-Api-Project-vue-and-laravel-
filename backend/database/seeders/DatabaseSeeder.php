@@ -19,6 +19,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@mail.com',
             'password' => bcrypt('password')
         ]);
+        $this->call([
+            CategorySeeder::class
+        ]);
         // \App\Models\Admin::factory(10)->create();
     }
 }

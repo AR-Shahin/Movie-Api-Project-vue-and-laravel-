@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Product;
+use App\Models\Movie;
 use App\Actions\File\File;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -15,7 +15,7 @@ class MovieController extends Controller
     public function index()
     {
         try {
-            $data = Product::latest()->get();
+            $data = Movie::latest()->get();
             if ($data->count() != 0) {
                 return sendSuccessResponse($data->load('category'), 'Data Retrieved Successfully!');
             } else {
@@ -28,7 +28,7 @@ class MovieController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => ['required', 'unique:products,name'],
+            'name' => ['required', 'unique:movies,name'],
             'category_id' => ['required', 'numeric'],
             'description' => ['required'],
             'duration' => ['required'],
@@ -41,12 +41,12 @@ class MovieController extends Controller
 
         $data = $validator->validated();
         $data['slug'] = Str::slug($data['name']);
-        $data['image'] = File::upload($request->file('image'), 'product');
+        $data['image'] = File::upload($request->file('image'), 'movie');
 
         try {
-            $product = Product::create($data);
-            if ($product) {
-                return sendSuccessResponse($product, 'Data Created Successfully!', 201);
+            $movie = Movie::create($data);
+            if ($movie) {
+                return sendSuccessResponse($movie, 'Data Created Successfully!', 201);
             }
         } catch (QueryException $e) {
             return sendErrorResponse("Something Went Wrong! {$e->getMessage()}", 500);
@@ -55,9 +55,9 @@ class MovieController extends Controller
     public function show($slug)
     {
         try {
-            $product = Product::whereSlug($slug)->first();
-            if ($product) {
-                return sendSuccessResponse($product->load('category'), 'Data Retrieved Successfully!');
+            $movie = Movie::whereSlug($slug)->first();
+            if ($movie) {
+                return sendSuccessResponse($movie->load('category'), 'Data Retrieved Successfully!');
             } else {
                 return sendSuccessResponse([], 'Data Not Found!', 404);
             }
@@ -70,18 +70,18 @@ class MovieController extends Controller
     {
 
         try {
-            $product = Product::whereSlug($slug)->first();
-            if ($product) {
+            $movie = Movie::whereSlug($slug)->first();
+            if ($movie) {
                 if ($request->hasFile('image')) {
                     $validator = Validator::make($request->all(), [
-                        'name' => ['required', 'unique:products,name,' . $product->id],
+                        'name' => ['required', 'unique:movies,name,' . $movie->id],
                         'description' => ['required'],
                         'duration' => ['required'],
                         'image' => ['required', 'image', 'mimes:jpg,png'],
                     ]);
                 } else {
                     $validator = Validator::make($request->all(), [
-                        'name' => ['required', 'unique:products,name,' . $product->id],
+                        'name' => ['required', 'unique:movies,name,' . $movie->id],
                         'duration' => ['required'],
                         'description' => ['required'],
                     ]);
@@ -90,25 +90,25 @@ class MovieController extends Controller
                 if ($validator->fails()) {
                     return sendErrorResponse('Data Validation Error!', $validator->errors(), 422);
                 } else {
-                    $oldImg = $product->image;
+                    $oldImg = $movie->image;
                     $data = $validator->validated();
                     $data['slug'] = Str::slug($data['name']);
                     if ($request->hasFile('image')) {
-                        $data['image'] = File::upload($request->file('image'), 'product');
+                        $data['image'] = File::upload($request->file('image'), 'movie');
                         try {
-                            $product = $product->update($data);
-                            if ($product) {
+                            $movie = $movie->update($data);
+                            if ($movie) {
                                 File::deleteFile($oldImg);
-                                return sendSuccessResponse($product, 'Data Updated Successfully!', 200);
+                                return sendSuccessResponse($movie, 'Data Updated Successfully!', 200);
                             }
                         } catch (QueryException $e) {
                             return sendErrorResponse("Something Went Wrong! {$e->getMessage()}", 500);
                         }
                     } else {
                         try {
-                            $product = $product->update($data);
-                            if ($product) {
-                                return sendSuccessResponse($product, 'Data Updated Successfully!', 200);
+                            $movie = $movie->update($data);
+                            if ($movie) {
+                                return sendSuccessResponse($movie, 'Data Updated Successfully!', 200);
                             }
                         } catch (QueryException $e) {
                             return sendErrorResponse("Something Went Wrong! {$e->getMessage()}", 500);
@@ -126,10 +126,10 @@ class MovieController extends Controller
     public function delete($slug)
     {
         try {
-            $product = Product::whereSlug($slug)->first();
-            if ($product) {
-                $img = $product->image;
-                $product->delete();
+            $movie = Movie::whereSlug($slug)->first();
+            if ($movie) {
+                $img = $movie->image;
+                $movie->delete();
                 File::deleteFile($img);
                 return sendSuccessResponse([], 'Data Deleted Successfully!');
             } else {

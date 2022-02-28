@@ -3,7 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
-use App\Models\Product;
+use App\Models\Movie;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -24,6 +25,6 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class
         ]);
         // \App\Models\Admin::factory(10)->create();
-        Product::factory(15)->create();
+        Movie::factory(15)->create();
     }
 }

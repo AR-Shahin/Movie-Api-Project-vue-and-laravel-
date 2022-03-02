@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\{
     UserController
 };
 use App\Models\Movie;
+use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -41,4 +42,10 @@ Route::prefix('user')->controller(UserController::class)->group(function () {
         Route::get('favourite', 'userFavMovies');
         Route::delete('favourite/{id}', 'deleteMovie');
     });
+});
+
+
+Route::controller(Review::class)->prefix('reviews')->group(function () {
+    Route::get('/', 'reviews');
+    Route::post('/', 'addReview');
 });

@@ -9,5 +9,5 @@ class Favourite extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
+    protected $fillable = ['movie_id', 'user_id'];
 }

@@ -5,7 +5,7 @@ function greetings($name = 'Shahin')
     return "Hello {$name}";
 }
 
-function sendSuccessResponse($result, $message, $code = 200)
+function sendSuccessResponse($result, $message = 'Data Retrieve Successfully!', $code = 200)
 {
     $response = [
         'success' => true,

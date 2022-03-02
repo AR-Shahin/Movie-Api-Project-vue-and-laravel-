@@ -57,7 +57,7 @@ class MovieController extends Controller
         try {
             $movie = Movie::whereSlug($slug)->first();
             if ($movie) {
-                return sendSuccessResponse($movie->load('category'), 'Data Retrieved Successfully!');
+                return sendSuccessResponse($movie->load(['category', 'reviews']), 'Data Retrieved Successfully!');
             } else {
                 return sendSuccessResponse([], 'Data Not Found!', 404);
             }

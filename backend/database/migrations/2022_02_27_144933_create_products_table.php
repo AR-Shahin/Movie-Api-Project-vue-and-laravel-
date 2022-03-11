@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('image');
-            $table->float('duration');
+            $table->float('duration')->default(10);
             $table->text('description');
             $table->timestamps();
         });

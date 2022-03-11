@@ -18,7 +18,7 @@ Route::controller(CategoryController::class)->prefix('categories')->group(functi
     Route::post('update/{slug}', 'update');
     Route::delete('/{slug}', 'delete');
 });
-
+Route::get('cat-movies', [CategoryController::class, 'categoryMovies']);
 Route::controller(MovieController::class)->prefix('movies')->group(function () {
     Route::get('/', 'index');
     Route::post('/', 'store');

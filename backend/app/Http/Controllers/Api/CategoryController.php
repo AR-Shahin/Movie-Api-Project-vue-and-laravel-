@@ -136,4 +136,10 @@ class CategoryController extends Controller
             return sendErrorResponse([], "Something went wrong! {$e->getMessage()}", 400);
         }
     }
+
+
+    public function categoryMovies()
+    {
+        return Category::with('test')->latest()->get();
+    }
 }

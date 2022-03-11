@@ -7,11 +7,23 @@ use App\Actions\File\File;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Validator;
 
 class MovieController extends Controller
 {
+
+    public function viewAllMovie()
+    {
+        $movies = Movie::with('category')->latest()->get();
+        return view('Backend.movie.all', compact('movies'));
+    }
+    public function viewWeb()
+    {
+        $categories = Category::all();
+        return view('Backend.movie.index', compact('categories'));
+    }
     public function index()
     {
         try {
@@ -27,6 +39,7 @@ class MovieController extends Controller
     }
     public function store(Request $request)
     {
+        //  return $request->all();
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'unique:movies,name'],
             'category_id' => ['required', 'numeric'],

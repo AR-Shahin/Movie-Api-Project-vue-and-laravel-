@@ -4,7 +4,7 @@
     <div class="row justify-content-center pt-3">
         <div class="col-md-6">
             <div class="card">
-                <img src="{{ asset($movie->name) }}" alt="">
+
 
                 <div class="card-body">
                     <a href="{{ route('admin.movie.all') }}" class="btn btn-success">All Movie</a> <br><br>

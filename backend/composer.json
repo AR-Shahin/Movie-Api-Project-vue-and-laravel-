@@ -11,6 +11,7 @@
         "laravel/framework": "^9.0",
         "laravel/sanctum": "^2.14",
         "laravel/tinker": "^2.7",
+        "staudenmeir/eloquent-eager-limit": "^1.0",
         "tomfordrumm/jwt-auth": "dev-develop"
     },
     "require-dev": {

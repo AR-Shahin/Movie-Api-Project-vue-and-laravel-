@@ -140,6 +140,9 @@ class CategoryController extends Controller
 
     public function categoryMovies()
     {
-        return Category::with('test')->latest()->get();
+        return Category::with(['movies' => function ($query) {
+            $query->latest()->limit(10);
+        }])->get();
+        return Category::with('movies')->get();
     }
 }

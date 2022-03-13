@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Relations\{
     BelongsTo,
     HasMany
 };
+use Staudenmeir\EloquentEagerLimit\HasEagerLimit;
 
 class Movie extends Model
 {
-    use HasFactory;
+    use HasFactory, HasEagerLimit;
     protected $fillable = ['name', 'slug', 'image', 'category_id', 'description'];
 
     public function category(): BelongsTo

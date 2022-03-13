@@ -22,8 +22,8 @@ class MovieController extends Controller
     public function viewWeb()
     {
         $categories = Category::all();
-        $movie = Movie::first();
-        return view('Backend.movie.index', compact('categories', 'movie'));
+        // $movie = Movie::first();
+        return view('Backend.movie.index', compact('categories'));
     }
     public function index()
     {

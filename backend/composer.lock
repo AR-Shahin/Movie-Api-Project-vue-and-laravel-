@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e8aa117a5a83e75d3fe1d4342d9d1185",
+    "content-hash": "b1883eb5bc494720ee8d7c3e3eaa7970",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2917,6 +2917,56 @@
                 }
             ],
             "time": "2021-09-25T23:10:38+00:00"
+        },
+        {
+            "name": "staudenmeir/eloquent-eager-limit",
+            "version": "v1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/staudenmeir/eloquent-eager-limit.git",
+                "reference": "f56fda3ed552116bc88b20b3aa6bb32484da0443"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/staudenmeir/eloquent-eager-limit/zipball/f56fda3ed552116bc88b20b3aa6bb32484da0443",
+                "reference": "f56fda3ed552116bc88b20b3aa6bb32484da0443",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^9.0",
+                "php": "^8.0.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Staudenmeir\\EloquentEagerLimit\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonas Staudenmeir",
+                    "email": "mail@jonas-staudenmeir.de"
+                }
+            ],
+            "description": "Laravel Eloquent eager loading with limit",
+            "support": {
+                "issues": "https://github.com/staudenmeir/eloquent-eager-limit/issues",
+                "source": "https://github.com/staudenmeir/eloquent-eager-limit/tree/v1.7"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.me/JonasStaudenmeir",
+                    "type": "custom"
+                }
+            ],
+            "time": "2022-02-06T12:52:58+00:00"
         },
         {
             "name": "symfony/console",
